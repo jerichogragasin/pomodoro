@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -36,9 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('images/background.jpg'),
-                  fit: BoxFit.cover,
-                )),
+              image: AssetImage('images/background.jpg'),
+              fit: BoxFit.cover,
+            )),
           ),
           Container(
             margin: const EdgeInsets.only(top: 200.0, left: 20.0, right: 20.0),
@@ -59,48 +60,42 @@ class _MyHomePageState extends State<MyHomePage> {
                           // Options
                           Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 20.0),
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Row(
                               children: <Widget>[
                                 Expanded(
                                     child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
+                                  style: ButtonStyle(
+                                    backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.white),
-                                        foregroundColor:
+                                    foregroundColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        print('Clicked');
-                                      },
-                                      child: const Text('Pomodoro'),
-                                    )),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Pomodoro'),
+                                )),
                                 Expanded(
                                     child: TextButton(
-                                      style: ButtonStyle(
-                                        foregroundColor:
+                                  style: ButtonStyle(
+                                    foregroundColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.white),
-                                      ),
-                                      onPressed: () {
-                                        print('Clicked');
-                                      },
-                                      child: const Text('Short Break'),
-                                    )),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Short Break'),
+                                )),
                                 Expanded(
                                     child: TextButton(
-                                      style: ButtonStyle(
-                                        foregroundColor:
+                                  style: ButtonStyle(
+                                    foregroundColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.white),
-                                      ),
-                                      onPressed: () {
-                                        print('Clicked');
-                                      },
-                                      child: const Text('Long Break'),
-                                    )),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text('Long Break'),
+                                )),
                               ],
                             ),
                           ),
@@ -118,9 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {
-                              print('Clicked');
-                            },
+                            onPressed: () {},
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.white),
                             child: const SizedBox(
@@ -129,7 +122,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Text(
                                   'Start',
                                   style: TextStyle(
-                                      fontSize: 20.0, color: Colors.black54,),
+                                    fontSize: 20.0,
+                                    color: Colors.black54,
+                                  ),
                                 ),
                               ),
                             ),
@@ -140,41 +135,75 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.symmetric(vertical: 30.0),
-                    // decoration: const BoxDecoration(color: Colors.green),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        //Task Title + Task Menu Option
-                        Container(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                width: 2.0,
-                                color: Colors.black26,
-                              ),
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 30.0),
+                  // decoration: const BoxDecoration(color: Colors.green),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      //Task Title + Task Menu Option
+                      Container(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        width: double.infinity,
+                        margin: const EdgeInsets.only(bottom: 20.0),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              width: 2.0,
+                              color: Colors.black26,
                             ),
                           ),
-                          child: Text(
-                              'Tasks',
+                        ),
+                        child: Text('Tasks',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                      ),
+                      //Task list => Task Item Checkbox - Task Details
+                      //Add New Task
+                      Center(
+                        child: DottedBorder(
+                          color: Colors.grey,
+                          dashPattern: const [10, 7],
+                          radius: const Radius.circular(20.0),
+                          borderType: BorderType.RRect,
+                          strokeWidth: 2,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              foregroundColor:
+                                  MaterialStateProperty.all<Color>(Colors.black),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.black38),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    // side: const BorderSide(
+                                    //     width: 2.0, color: Colors.grey),
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              minimumSize: MaterialStateProperty.all(
+                                  const Size(double.infinity, 70.0)),
+                            ),
+                            child: Text(
+                              'Add New Task',
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
-                                  fontSize: 30.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            onPressed: () {},
                           ),
                         ),
-                        //Task list => Task Item Checkbox - Task Details
-                        //Add New Task
-
-                      ],
-                    ))
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
