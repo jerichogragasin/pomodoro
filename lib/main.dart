@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,33 +101,44 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           // Timer
-                          Padding(
+
+                          Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10.0),
                             padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            child: Text(
-                              '25:00',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 70.0),
-                              ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.black12,
                             ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                                backgroundColor: Colors.white),
-                            child: const SizedBox(
-                              width: 200.0,
-                              child: Center(
-                                child: Text(
-                                  'Start',
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.black54,
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                Text(
+                                  '25:00',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 70.0),
                                   ),
                                 ),
-                              ),
+                                TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: Colors.white),
+                                  child: const SizedBox(
+                                    width: 200.0,
+                                    child: Center(
+                                      child: Text(
+                                        'Start',
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           )
                         ],
@@ -212,3 +224,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
