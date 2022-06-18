@@ -1,7 +1,8 @@
 import 'dart:ui';
+
 import 'package:dotted_border/dotted_border.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
   final String title;
 
   @override
@@ -29,6 +33,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static int _currentTaskState = 1;
+
+  void _setCurrentState<int>(param) {
+    print(
+      "initial State: " + _currentTaskState.toString(),
+    );
+    setState(() {
+      _currentTaskState = param;
+    });
+    print("current State: " + _currentTaskState.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +80,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Row(
                               children: <Widget>[
                                 Expanded(
-                                    child: TextButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.white),
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.black),
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.white),
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.black),
+                                    ),
+                                    onPressed: () => _setCurrentState(1),
+                                    child: const Text('Pomodoro'),
                                   ),
-                                  onPressed: () {},
-                                  child: const Text('Pomodoro'),
-                                )),
+                                ),
                                 Expanded(
                                     child: TextButton(
                                   style: ButtonStyle(
@@ -84,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         MaterialStateProperty.all<Color>(
                                             Colors.white),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => _setCurrentState(2),
                                   child: const Text('Short Break'),
                                 )),
                                 Expanded(
@@ -94,53 +110,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                         MaterialStateProperty.all<Color>(
                                             Colors.white),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () => _setCurrentState(3),
                                   child: const Text('Long Break'),
                                 )),
                               ],
                             ),
                           ),
-                          // Timer
 
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10.0),
-                            padding: const EdgeInsets.symmetric(vertical: 20.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.black12,
-                            ),
-                            width: double.infinity,
-                            child: Column(
-                              children: [
-                                Text(
-                                  '25:00',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 70.0),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                      backgroundColor: Colors.white),
-                                  child: const SizedBox(
-                                    width: 200.0,
-                                    child: Center(
-                                      child: Text(
-                                        'Start',
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.black54,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
+                          //Timer Widget
+                          TimerContainer(),
                         ],
                       ),
                     ),
@@ -187,8 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           strokeWidth: 2,
                           child: TextButton(
                             style: ButtonStyle(
-                              foregroundColor:
-                                  MaterialStateProperty.all<Color>(Colors.black),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.black),
                               backgroundColor: MaterialStateProperty.all<Color>(
                                   Colors.black38),
                               shape: MaterialStateProperty.all(
@@ -225,4 +203,61 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+class TimerContainer extends StatelessWidget {
+  const TimerContainer({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Timer();
+  }
+}
+
+class Timer extends StatelessWidget {
+  const Timer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.black12,
+      ),
+      width: double.infinity,
+      child: Column(
+        children: [
+          Text(
+            '25:00',
+            style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 70.0),
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            style: TextButton.styleFrom(backgroundColor: Colors.white),
+            child: const SizedBox(
+              width: 200.0,
+              child: Center(
+                child: Text(
+                  'Start',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
